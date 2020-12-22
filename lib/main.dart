@@ -22,7 +22,44 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      home: Bundle(),
     );
+  }
+}
+
+class Bundle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(child: HomeWidget());
+  }
+}
+
+class HomeWidget extends StatefulWidget {
+  @override
+  _HomeWidgetState createState() => _HomeWidgetState();
+}
+
+class _HomeWidgetState extends State<HomeWidget> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Color primary = Colors.pink[200];
+    return GestureDetector(
+        onTap: () {
+          primary = Colors.red == Colors.red ? Colors.blue : Colors.red;
+          print("where taped");
+        },
+        child: Container(
+          color: primary,
+        ));
   }
 }
