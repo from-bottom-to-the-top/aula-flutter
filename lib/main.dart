@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyAppWithColumn());
 }
 
 class MyApp extends StatelessWidget {
@@ -61,4 +61,55 @@ Widget iconWidget() {
     color: Colors.white,
     size: 64,
   ));
+}
+
+class MyAppWithColumn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.green),
+      title: "Material app with column",
+      home: Scaffold(
+        body: BaseWidget(),
+      ),
+    );
+  }
+}
+
+class BaseWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.yellow,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[ButtonWithIcon(), ButtonWithText()],
+      ),
+    );
+  }
+}
+
+class ButtonWithIcon extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.red,
+      width: double.infinity,
+      height: 50,
+      alignment: Alignment.center,
+      child: Icon(Icons.add, color: Colors.white),
+    );
+  }
+}
+
+class ButtonWithText extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.blue,
+      width: double.infinity,
+      height: 50,
+      alignment: Alignment.center,
+      child: Text("Click-me",
+          style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+    );
+  }
 }
