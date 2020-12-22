@@ -36,14 +36,29 @@ class HomeWidget extends StatelessWidget {
           width: 300,
           color: Colors.blue[200],
           alignment: Alignment.center,
-          child: Text("Meu primeiro texto",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w900)),
+          child: iconWidget(),
         ),
       ),
     );
   }
+}
+
+Widget textWidget() {
+  return Container(
+    child: Text("Meu primeiro texto",
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 10,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w900)),
+  );
+}
+
+Widget iconWidget() {
+  return Container(
+      child: Icon(
+    Icons.ac_unit,
+    color: Colors.white,
+    size: 64,
+  ));
 }
