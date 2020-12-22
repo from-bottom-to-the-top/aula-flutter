@@ -31,9 +31,18 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Container(
-        width: 300,
-        color: Colors.blue[200],
+      child: Center(
+        child: Container(
+          width: 300,
+          color: Colors.blue[200],
+          alignment: Alignment.center,
+          child: Text("Meu primeiro texto",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w900)),
+        ),
       ),
     );
   }
