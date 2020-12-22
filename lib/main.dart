@@ -91,25 +91,31 @@ class BaseWidget extends StatelessWidget {
 
 class ButtonWithIcon extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-      width: double.infinity,
-      height: 50,
-      alignment: Alignment.center,
-      child: Icon(Icons.add, color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: Container(
+        color: Colors.red,
+        width: double.infinity,
+        height: 50,
+        alignment: Alignment.center,
+        child: Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 }
 
 class ButtonWithText extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      width: double.infinity,
-      height: 50,
-      alignment: Alignment.center,
-      child: Text("Click-me",
-          style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: Container(
+        color: Colors.blue,
+        width: double.infinity,
+        height: 50,
+        alignment: Alignment.center,
+        child: Text("Click-me",
+            style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+      ),
     );
   }
 }
