@@ -81,9 +81,12 @@ class BaseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.yellow,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[ButtonWithIcon(), ButtonWithText()],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[ButtonWithIcon(), ButtonWithText()],
+        ),
       ),
     );
   }
@@ -94,7 +97,15 @@ class ButtonWithIcon extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: Container(
-        color: Colors.red,
+        decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  offset: Offset(0.8, 0.8),
+                  blurRadius: 10.0)
+            ]),
         width: double.infinity,
         height: 50,
         alignment: Alignment.center,
