@@ -109,6 +109,9 @@ class ButtonWithText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: Container(
+        transform: Matrix4.identity()
+          ..scale(.9)
+          ..translate(9.0, 4.0, 13.0),
         color: Colors.blue,
         width: double.infinity,
         height: 50,
