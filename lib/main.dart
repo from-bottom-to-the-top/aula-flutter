@@ -107,7 +107,8 @@ class BaseWidget extends StatelessWidget {
               Image.network(
                   "https://i.ibb.co/HCf1jXg/Pok-mon-Gold-And-Silver-Pikachu-PNG-Free-Download.jpg",
                   width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.height * 0.20)
+                  height: MediaQuery.of(context).size.height * 0.20),
+              ButtonWithIconAndText(text: "Alarme!")
             ],
           ),
         ));
@@ -152,6 +153,39 @@ class ButtonWithText extends StatelessWidget {
           height: 50,
           alignment: Alignment.center,
           child: textButton),
+    );
+  }
+}
+
+class ButtonWithIconAndText extends StatelessWidget {
+  final String text;
+  final Icon icon;
+  ButtonWithIconAndText({@required this.text, this.icon});
+  @override
+  Widget build(BuildContext contex) {
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: 40,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.greenAccent,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                offset: Offset(3, 3), color: Colors.blueAccent, blurRadius: 150)
+          ]),
+      child: Row(children: <Widget>[
+        Expanded(
+          child: Icon(this.icon ?? Icons.alarm),
+          flex: 3,
+        ),
+        Expanded(
+          child: Text(
+            this.text,
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        )
+      ]),
     );
   }
 }
