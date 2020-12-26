@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyAppWithColumn());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,44 +22,170 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Bundle(),
+      home: Scaffold(body: HomeWidget()),
     );
   }
 }
 
-class Bundle extends StatelessWidget {
+class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(child: HomeWidget());
-  }
-}
-
-class HomeWidget extends StatefulWidget {
-  @override
-  _HomeWidgetState createState() => _HomeWidgetState();
-}
-
-class _HomeWidgetState extends State<HomeWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Color primary = Colors.pink[200];
-    return GestureDetector(
-        onTap: () {
-          primary = Colors.red == Colors.red ? Colors.blue : Colors.red;
-          print("where taped");
-        },
+    return Container(
+      child: Center(
         child: Container(
-          color: primary,
+          width: 300,
+          color: Colors.blue[200],
+          alignment: Alignment.center,
+          child: iconWidget(),
+        ),
+      ),
+    );
+  }
+}
+
+Widget textWidget() {
+  return Container(
+    child: Text("Meu primeiro texto",
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 10,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w900)),
+  );
+}
+
+Widget iconWidget() {
+  return Container(
+      child: Icon(
+    Icons.ac_unit,
+    color: Colors.white,
+    size: 64,
+  ));
+}
+
+class MyAppWithColumn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.green),
+      title: "Material app with column",
+      home: Scaffold(
+        body: BaseWidget(),
+      ),
+    );
+  }
+}
+
+class BaseWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                    "https://i.ibb.co/phHHBpL/Stock-Snap-VCJK4-NBK4-W.jpg"),
+                fit: BoxFit.cover)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ButtonWithIcon(),
+              ButtonWithText(textButton: Text("Click me")),
+              ButtonWithText(textButton: Text("Ok")),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Container(width: 50, height: 50, color: Colors.red),
+                  Container(width: 50, height: 50, color: Colors.green),
+                  Container(width: 50, height: 50, color: Colors.blue),
+                ],
+              ),
+              Image.asset('assets/pockemon.jpeg',
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.20),
+              Image.network(
+                  "https://i.ibb.co/HCf1jXg/Pok-mon-Gold-And-Silver-Pikachu-PNG-Free-Download.jpg",
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.20),
+              ButtonWithIconAndText(text: "Alarme!")
+            ],
+          ),
         ));
+  }
+}
+
+class ButtonWithIcon extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  offset: Offset(0.8, 0.8),
+                  blurRadius: 10.0)
+            ]),
+        width: double.infinity,
+        height: 50,
+        alignment: Alignment.center,
+        child: Icon(Icons.add, color: Colors.white),
+      ),
+    );
+  }
+}
+
+class ButtonWithText extends StatelessWidget {
+  final Text textButton;
+  ButtonWithText({this.textButton});
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: Container(
+          transform: Matrix4.identity()
+            ..scale(.9)
+            ..translate(9.0, 4.0, 13.0),
+          color: Colors.blue,
+          width: double.infinity,
+          height: 50,
+          alignment: Alignment.center,
+          child: textButton),
+    );
+  }
+}
+
+class ButtonWithIconAndText extends StatelessWidget {
+  final String text;
+  final Icon icon;
+  ButtonWithIconAndText({@required this.text, this.icon});
+  @override
+  Widget build(BuildContext contex) {
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: 40,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.greenAccent,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                offset: Offset(3, 3), color: Colors.blueAccent, blurRadius: 150)
+          ]),
+      child: Row(children: <Widget>[
+        Expanded(
+          child: Icon(this.icon ?? Icons.alarm),
+          flex: 3,
+        ),
+        Expanded(
+          child: Text(
+            this.text,
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        )
+      ]),
+    );
   }
 }
