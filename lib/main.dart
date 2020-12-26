@@ -80,7 +80,11 @@ class BaseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.yellow,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                    "https://i.ibb.co/phHHBpL/Stock-Snap-VCJK4-NBK4-W.jpg"),
+                fit: BoxFit.cover)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
